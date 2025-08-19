@@ -27,7 +27,7 @@ Management suspects that some employees may be using TOR browsers to bypass netw
 
 ### 1. Searched the `DeviceFileEvents` Table
 
-Searched the DeviceFileEvents table for ANY file that had the string “tor” in it and discovered what looks like the user “krispy” downloaded a tor installer, did something that resulted in many tor-related files being copied to the desktop and the creation of a file called “tor-shopping-list.txt” on the desktop at `2025-08-16T03:52:18.6062319Z`. These events began at: `2025-08-16T03:25:17.6245288Z`
+Searched the `DeviceFileEvents` table for ANY file that had the string `tor` in it and discovered what looks like the user “krispy” downloaded a tor installer, did something that resulted in many tor-related files being copied to the desktop and the creation of a file called `tor-shopping-list.txt` on the desktop at `2025-08-16T03:52:18.6062319Z`. These events began at: `2025-08-16T03:25:17.6245288Z`
 
 **Query used to locate events:**
 
@@ -47,7 +47,7 @@ DeviceFileEvents
 
 ### 2. Searched the `DeviceProcessEvents` Table
 
-Searched the DeviceProcessEvents table for any ProcessCommandLine that contained the string “tor-browser-windows-x86_64-portable-14.5.5.exe”. Based on the logs returned, at `2025-08-16T03:31:29.1616741Z`, an employee “krispy” on the machine named “krisp-machine-3” launched the Tor Browser portable installer (version 14.5.5) from their Downloads folder silently, with no additional command-line options. The executable’s fingerprint is `SHA-256: 6d38a13c6a5865b373ef1e1ffcd31b3f359abe896571d27fa666ce71c486a40d`
+Searched the `DeviceProcessEvents` table for any ProcessCommandLine that contained the string `tor-browser-windows-x86_64-portable-14.5.5.exe`. Based on the logs returned, at `2025-08-16T03:31:29.1616741Z`, an employee “krispy” on the machine named “krisp-machine-3” launched the Tor Browser portable installer (version 14.5.5) from their Downloads folder silently, with no additional command-line options. The executable’s fingerprint is `SHA-256: 6d38a13c6a5865b373ef1e1ffcd31b3f359abe896571d27fa666ce71c486a40d`
 
 **Query used to locate event:**
 
