@@ -27,7 +27,7 @@ Management suspects that some employees may be using TOR browsers to bypass netw
 
 ### 1. Searched the `DeviceFileEvents` Table
 
-Searched the DeviceFileEvents table for ANY file that had the string “tor” in it and discovered what looks like the user “krispy” downloaded a tor installer, did something that resulted in many tor-related files being copied to the desktop and the creation of a file called “tor-shopping-list.txt” on the desktop at 2025-08-16T03:52:18.6062319Z. These events began at: 2025-08-16T03:25:17.6245288Z
+Searched the DeviceFileEvents table for ANY file that had the string “tor” in it and discovered what looks like the user “krispy” downloaded a tor installer, did something that resulted in many tor-related files being copied to the desktop and the creation of a file called “tor-shopping-list.txt” on the desktop at `2025-08-16T03:52:18.6062319Z`. These events began at: `2025-08-16T03:25:17.6245288Z`
 
 **Query used to locate events:**
 
@@ -47,12 +47,11 @@ DeviceFileEvents
 
 ### 2. Searched the `DeviceProcessEvents` Table
 
-Searched the DeviceProcessEvents table for any ProcessCommandLine that contained the string “tor-browser-windows-x86_64-portable-14.5.5.exe”. Based on the logs returned, at 2025-08-16T03:31:29.1616741Z, an employee “krispy” on the machine named “krisp-machine-3” launched the Tor Browser portable installer (version 14.5.5) from their Downloads folder silently, with no additional command-line options. The executable’s fingerprint is SHA-256: 6d38a13c6a5865b373ef1e1ffcd31b3f359abe896571d27fa666ce71c486a40d
+Searched the DeviceProcessEvents table for any ProcessCommandLine that contained the string “tor-browser-windows-x86_64-portable-14.5.5.exe”. Based on the logs returned, at `2025-08-16T03:31:29.1616741Z`, an employee “krispy” on the machine named “krisp-machine-3” launched the Tor Browser portable installer (version 14.5.5) from their Downloads folder silently, with no additional command-line options. The executable’s fingerprint is `SHA-256: 6d38a13c6a5865b373ef1e1ffcd31b3f359abe896571d27fa666ce71c486a40d`
 
 **Query used to locate event:**
 
 ```kql
-
 DeviceProcessEvents
 | where DeviceName == "krisp-machine-3"
 | where ProcessCommandLine contains "tor-browser-windows-x86_64-portable-14.5.5.exe"
@@ -64,7 +63,7 @@ DeviceProcessEvents
 
 ### 3. Searched the `DeviceProcessEvents` Table for TOR Browser Execution
 
-Searched the DeviceProcessEvents table for any indication that user “krispy” actually opened the tor browser. There was evidence that they did open it at 2025-08-16T03:31:58.7071151Z. There were several other instances of firefox.eve (Tor) as well as tor.exe spawned afterwards.
+Searched the `DeviceProcessEvents` table for any indication that user “krispy” actually opened the tor browser. There was evidence that they did open it at `2025-08-16T03:31:58.7071151Z`. There were several other instances of `firefox.exe` (Tor) as well as `tor.exe` spawned afterwards.
 
 **Query used to locate events:**
 
@@ -81,7 +80,7 @@ DeviceProcessEvents
 
 ### 4. Searched the `DeviceNetworkEvents` Table for TOR Network Connections
 
-At 2025-08-16T03:54:12.5339919Z on the computer named “krisp-machine-3,” the user “krispy” successfully established a network connection. The process that initiated it was tor.exe, located in c:\users\krispy\desktop\tor browser\browser\torbrowser\tor\tor.exe. It connected to the remote IP address 82.165.21.136 on port 9001. There were a couple of other connections to sites over port 443.
+At `2025-08-16T03:54:12.5339919Z` on the computer named “krisp-machine-3,” the user “krispy” successfully established a network connection. The process that initiated it was `tor.exe`, located in `c:\users\krispy\desktop\tor browser\browser\torbrowser\tor\tor.exe`. It connected to the remote IP address `82.165.21.136` on port `9001`. There were a couple of other connections to sites over port `443`.
 
 **Query used to locate events:**
 
@@ -105,7 +104,7 @@ DeviceNetworkEvents
 - **Timestamp:** `2025-08-16T03:25:17.6245288Z`
 - **Event:** Tor-related files begin appearing on the device—indicative of downloads or staging of Tor components by user “krispy.”
 - **Action:**  Initial file creation or modification detected in the Desktop or Downloads folder.
-- **File Path:** Various Tor-related files; "tor-shopping-list.txt" appears later at 2025-08-16T03:52:18.6062319Z
+- **File Path:** C:\Users\krispy\Downloads\tor-browser-windows-x86_64-portable-14.0.1.exe
 
 ### 2. Process Execution - TOR Browser Installation
 
@@ -118,21 +117,21 @@ DeviceNetworkEvents
 ### 3. Process Execution - TOR Browser Launch
 
 - **Timestamp:** `2025-08-16T03:31:58.7071151Z`
-- **Event:** Tor Browser processes (e.g., tor-browser.exe, tor.exe, firefox.exe) launch—indicating the browser is actively running.
+- **Event:** Tor Browser processes (e.g., `tor-browser.exe`, `tor.exe`, `firefox.exe`) launch—indicating the browser is actively running.
 - **Action:** Process creation of Tor browser-related executables detected.
-- **File Path:** `Paths correspond to the installed Tor Browser directory, likely on the Desktop under “tor browser\browser\torbrowser\tor…”`
+- **File Path:** `Paths correspond to the installed Tor Browser directory, likely on the Desktop under “`tor browser\browser\torbrowser\tor…`”`
 
 ### 4. Network Connection - TOR Network
 
 - **Timestamp:** `2025-08-16T03:54:12.5339919Z`
-- **Event:**  tor.exe (located in the Tor Browser folder on the Desktop) successfully establishes a network connection to remote IP 82.165.21.136 via port 9001, with additional connections over port 443.
+- **Event:**  `tor.exe` (located in the Tor Browser folder on the Desktop) successfully establishes a network connection to remote IP `82.165.21.136` via port `9001`, with additional connections over port `443`.
 - **Action:** Network connection success by Tor executable.
 - **File Path:** `C:\Users\krispy\Desktop\tor browser\browser\torbrowser\tor\tor.exe`
 
 ### 5. File Creation - TOR Shopping List
 
 - **Timestamp:** `2025-08-16T03:52:18.6062319Z`
-- **Event:** A text file named “tor-shopping-list.txt” appears on the Desktop.
+- **Event:** A text file named “`tor-shopping-list.txt`” appears on the Desktop.
 - **Action:** File creation detected.
 - **File Path** `C:\Users\krispy\Desktop\tor-shopping-list.txt`
 
@@ -141,13 +140,13 @@ DeviceNetworkEvents
 
 ## Summary
 
-The user “krispy” on the “krisp-machine-3” device initiated and completed the installation of the Tor browser. They proceeded to launch the browser, establish connections within the Tor network, and created various files related to Tor on their desktop, including a file named tor-shopping-list.txt. This sequence of activities indicates that the user actively installed, configured, and used the Tor browser, likely for anonymous browsing purposes, with possible documentation in the form of the “shopping list” file.
+The user “krispy” on the “krisp-machine-3” device initiated and completed the installation of the Tor browser. They proceeded to launch the browser, establish connections within the Tor network, and created various files related to Tor on their desktop, including a file named `tor-shopping-list.txt`. This sequence of activities indicates that the user actively installed, configured, and used the Tor browser, likely for anonymous browsing purposes, with possible documentation in the form of the “shopping list” file.
 
 
 ---
 
 ## Response Taken
 
-TOR usage was confirmed on endpoint krisp-machine-3 by the user krispy. The device was isolated and the user's direct manager was notified.
+TOR usage was confirmed on endpoint `krisp-machine-3` by the user `krispy`. The device was isolated and the user's direct manager was notified.
 
 ---
